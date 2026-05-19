@@ -1,3 +1,5 @@
+package main.java.model;
+
 package model;
 
 import javax.imageio.ImageIO;
@@ -36,6 +38,7 @@ public abstract class Entity {
      * @param y
      * @param sprite
      */
+
     public Entity(int x, int y, BufferedImage sprite) {
         this.x = x;
         this.y = y;
@@ -45,6 +48,8 @@ public abstract class Entity {
     }
 
     /*
+
+     * Cada subclase debe definir su propia lógica de reinicio
      * Metodo abstracto update(): Cada subclase debe definir su propia lógica de reinicio
      */
     public abstract void update();
@@ -79,6 +84,7 @@ public abstract class Entity {
      *
      * @return
      */
+
     public int getX() {
         return x;
     }

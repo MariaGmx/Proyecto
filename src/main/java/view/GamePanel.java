@@ -2,7 +2,14 @@ package view;
 
 import model.FallingFood;
 import model.GamerPot;
-import model.Level1;
+import model.Level;
+package main.java.view;
+
+
+import main.java.model.FallingFood;
+import main.java.model.GamerPot;
+import main.java.model.Level;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -30,7 +37,8 @@ public class GamePanel extends JPanel {
         setFocusable(true);
         requestFocusInWindow();
 
-        URL url = getClass().getClassLoader().getResource("src/main/resources/images/background.png");
+        URL url = getClass().getClassLoader()
+                .getResource("main/resources/images/background.png");
 
         System.out.println(url);
 

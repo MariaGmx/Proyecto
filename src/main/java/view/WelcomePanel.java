@@ -23,17 +23,29 @@ public class WelcomePanel extends JFrame {
         // LOGO DE LA UAM
         URL urlLogo = getClass().getClassLoader().getResource("main/resources/images/logoU.png");
 
-        System.out.println(urlLogo);
+        URL urlLogo = getClass().getClassLoader()
+                .getResource("main/resources/images/logoU.png");
+
+        System.out.println(urlLogo); // verifica que NO sea null
 
         ImageIcon logoIcon = new ImageIcon(urlLogo);
 
-        Image imgEscalada = logoIcon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+// 🔥 REDIMENSIONAR IMAGEN
+        Image imgEscalada = logoIcon.getImage()
+                .getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 
         ImageIcon logoFinal = new ImageIcon(imgEscalada);
 
+// JLabel con imagen ya ajustada
         JLabel logo = new JLabel(logoFinal);
+
+// posición abajo a la derecha (ajusta si quieres)
         logo.setBounds(590, 610, 210, 300);
+
         panel.add(logo);
+        // BOTÓN IMAGEN
+        URL urlBtn = getClass().getClassLoader()
+                .getResource("main/resources/images/boton1.png");
 
         // CONTENEDOR EN EL QUE ESTAMOS TRABAJANDO
         JPanel estudiantesPanel = new JPanel(null);
@@ -108,15 +120,22 @@ public class WelcomePanel extends JFrame {
         ImageIcon icono = new ImageIcon(urlBtn);
 
         JButton btnIniciar = new JButton(icono);
-        btnIniciar.setBounds(300, 250, icono.getIconWidth(), icono.getIconHeight());
+
+        btnIniciar.setBounds(300, 250,
+                icono.getIconWidth(),
+                icono.getIconHeight());
+
         btnIniciar.setBorderPainted(false);
         btnIniciar.setContentAreaFilled(false);
         btnIniciar.setFocusPainted(false);
 
+        // 🔥 INICIAR JUEGO
         btnIniciar.addActionListener(e -> {
+
             GameController controller = new GameController();
             controller.startGame();
-            dispose();
+
+            dispose(); // cierra el menú
         });
 
         panel.add(btnIniciar);
@@ -125,10 +144,12 @@ public class WelcomePanel extends JFrame {
     }
 
     class BackgroundPanel extends JPanel {
+
         private Image background;
 
         public BackgroundPanel() {
-            URL url = getClass().getClassLoader().getResource("main/resources/images/PanelBienvenida.png");
+            URL url = getClass().getClassLoader()
+                    .getResource("main/resources/images/PanelBienvenida.png");
 
             background = new ImageIcon(url).getImage();
         }

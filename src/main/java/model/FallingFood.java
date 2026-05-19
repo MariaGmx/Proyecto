@@ -37,6 +37,7 @@ public class FallingFood extends Entity implements Runnable {
     /**
      * Metodo run() de Runnable()
      */
+
     @Override
     public void run() {
         {

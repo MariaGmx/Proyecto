@@ -1,3 +1,12 @@
+package main.java.controller;
+
+
+import main.java.model.FallingFood;
+import main.java.model.GamerPot;
+import main.java.model.Level;
+import main.java.model.Level1;
+import main.java.view.GamePanel;
+
 package controller;
 import model.FallingFood;
 import model.GamerPot;
@@ -19,7 +28,7 @@ public class GameController implements KeyListener {
     private GamerPot gamer;
     private ArrayList<FallingFood> foods;
     private GamePanel panel;
-    private Level1 currentLevel;
+    private Level currentLevel;
     private int points;
     private boolean isGameActive;
 
@@ -30,7 +39,7 @@ public class GameController implements KeyListener {
     }
 
     /**
-     * Metodo startGame: Inicia el juego llamndo a loadLevel()
+     * Metodo stratGame: Inicia el juego llamndo a loadLevel()
      */
     public void startGame() {
 
@@ -129,6 +138,7 @@ public class GameController implements KeyListener {
 
     /**
      * Método loadLevel: toma los valores del nivel activo y configura el juego
+     * <p>
      * Crea el currentLevel
      * Crea el gamer con las vidas del nivel
      * Crear las  foods con las casillas y velocidad del nivel
@@ -158,6 +168,7 @@ public class GameController implements KeyListener {
 
     /**
      * Metodo randomBox: Toma el arreglo de casillas del nivel activo escoge una posición al azar.
+     *
      * @return
      */
     private int randomBox() {
@@ -184,3 +195,4 @@ public class GameController implements KeyListener {
     }
 }
 //prueba de git exitosa
+
