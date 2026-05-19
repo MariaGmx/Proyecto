@@ -1,10 +1,11 @@
 package main.java.controller;
 
-import model.FallingFood;
-import model.GamerPot;
-import model.Level;
-import model.Level1;
-import view.GamePanel;
+
+import main.java.model.FallingFood;
+import main.java.model.GamerPot;
+import main.java.model.Level;
+import main.java.model.Level1;
+import main.java.view.GamePanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

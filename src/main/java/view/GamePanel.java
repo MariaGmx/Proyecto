@@ -7,6 +7,7 @@ import main.java.model.Level;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -22,8 +23,12 @@ public class GamePanel extends JPanel {
         setFocusable(true);
         requestFocusInWindow();
 
-        background = new ImageIcon(getClass().getResource("/images/background.png")).getImage();
+        URL url = getClass().getClassLoader()
+                .getResource("main/resources/images/background.png");
 
+        System.out.println(url);
+
+        background = new ImageIcon(url).getImage();
         JFrame ventana = new JFrame();
         ventana.setTitle("Burning Kitchen");
         ventana.setSize(800, 1000);
