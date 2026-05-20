@@ -1,30 +1,37 @@
-package main.java.view;
+package src.main.java.view;
 
 
-import main.java.model.FallingFood;
-import main.java.model.GamerPot;
-import main.java.model.Level;
-
+import src.main.java.model.FallingFood;
+import src.main.java.model.GamerPot;
+import src.main.java.model.Level1;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 
-
+/**
+ * Clase GamePanel: Extiende de JPanel, se encarga de coordinar la ventana de juego.
+ * tamaño, titulo, imagenes, ventana.
+ */
 public class GamePanel extends JPanel {
 
     private GamerPot gamer;
     private ArrayList<FallingFood> foods;
     private Image background;
 
-    public GamePanel(GamerPot gamer, ArrayList<FallingFood> foods, Level currentLevel) {
+    /**
+     * Constructor por parametros de GamePanel
+     * @param gamer
+     * @param foods
+     * @param currentLevel
+     */
+    public GamePanel(GamerPot gamer, ArrayList<FallingFood> foods, Level1 currentLevel) {
         this.gamer = gamer;
         this.foods = foods;
         setFocusable(true);
         requestFocusInWindow();
 
-        URL url = getClass().getClassLoader()
-                .getResource("main/resources/images/background.png");
+        URL url = getClass().getClassLoader().getResource("src/main/resources/images/background.png");
 
         System.out.println(url);
 
@@ -38,10 +45,19 @@ public class GamePanel extends JPanel {
 
     }
 
+    /**
+     * Getter de Ventana
+     * @return
+     */
     public JFrame getVentana() {
         return (JFrame) SwingUtilities.getWindowAncestor(this);
     }
 
+
+    /**
+     * Metodo heredado de JPanel: EScribe en la pantalla, establece el fondo de pantalla con un efecto de opacidad
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);

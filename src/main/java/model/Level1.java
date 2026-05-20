@@ -1,7 +1,14 @@
-package main.java.model;
+package src.main.java.model;
 
-public class Level1 implements Level {
+/**
+ * Clase Level1: contiene la configuración del nivel.
+ * tiempo limite, vidas, velocidad de lan comida al caer, puntaje minimo, movimiento de GamerPot en x, y numero de enemigos
+ */
+public class Level1  {
 
+    /**
+     * Atributos de la clase Level1
+     */
     private int[] boxes = {50, 200, 350, 500, 650};
     private int lifes = 4;
     private int timeLine = 150; // duracion del nivel en segundos
@@ -68,18 +75,14 @@ public class Level1 implements Level {
         return steps;
     }
 
-    @Override
     public int getLives() {
         return lifes;
     }
 
-    @Override
     public int getTimeLimitSeconds() {
         return timeLine;
     }
 
-
-    @Override
     public int getNumEnemies() {
         return numbEnemies;
     }

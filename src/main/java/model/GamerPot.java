@@ -1,9 +1,9 @@
-package main.java.model;
+package src.main.java.model;
 
 import java.awt.*;
 
 
-public class GamerPot extends Entity {
+public class GamerPot extends src.main.java.model.Entity {
 
     /**
      * // constantes y variables de  GamerPot
@@ -12,22 +12,21 @@ public class GamerPot extends Entity {
     private static final int Y_INITIAL = 550;
     private static final int SPEED = 1;
     private static final int INITIAL_LIVES = 3;
+
+
+
+    /**
+     * Variables de GamerPot
+     */
+    // variable de vidas
+    private int lives;
+    //variable de puntuacion
+    private int score = 0;
     private int currentBox = 0;
 
 
     /**
-     * Variables de gamerPot
-     */
-    // variable de vidas
-    private int lives;
-
-    //variable de puntuacion
-    private int score = 0;
-
-
-    /**
      * Getters y Setters
-     *
      * @return
      */
     public int getLives() {
@@ -72,11 +71,16 @@ public class GamerPot extends Entity {
 
     }
 
+    /**
+     * Método abstracto toDraw: Se encarga de dibujar el GamerPot
+     * @param g
+     */
     @Override
     public void toDraw(Graphics g) {
         g.drawImage(getSprite(), getX(), getY(), 300, 300, null);
 
     }
+
 
     /**
      * Metodo que reinicia por completo, posicion, vidas y puntaje
@@ -86,22 +90,25 @@ public class GamerPot extends Entity {
         this.score = 0;
     }
 
+
     /**
-     * Suma puntos a la puntuación acumulada.
+     * Metodo  SumarPuntos: suma a la puntuación acumulada.
      */
     public void sumarPuntos(int puntos) {
         this.score += puntos;
     }
 
+
     /**
-     * Descuenta una vida.
+     * Metodo loseLife: Descuenta una vida.
      */
     public void loseLife() {
         if (lives > 0) lives--;
     }
 
+
     /**
-     * Metodo para mover GamerPOt a la derecha
+     * Metodo para mover GamerPot a la derecha
      */
     public void moveRight(int step) {
         if (x + step <= 600) {
@@ -110,7 +117,7 @@ public class GamerPot extends Entity {
     }
 
     /**
-     * Metodo para mover GamerPOt a la izquierda
+     * Metodo para mover GamerPot a la izquierda
      */
     public void moveLeft(int step) {
         if (x - step >= 0) {
