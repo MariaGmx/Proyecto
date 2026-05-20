@@ -1,30 +1,36 @@
-package main.java.controller;
-
-
-import main.java.model.FallingFood;
-import main.java.model.GamerPot;
-import main.java.model.Level;
-import main.java.model.Level1;
-import main.java.view.GamePanel;
-
+package src.main.java.controller;
+import src.main.java.model.FallingFood;
+import src.main.java.model.GamerPot;
+import src.main.java.model.Level1;
+import src.main.java.view.GamePanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * Clase GameController: Coordina toda la parte visual del jugeo con la logica.
+ * las ventanas, las imagenes, los puntos, las colisiones e implementa KeyListener
+ */
 public class GameController implements KeyListener {
 
+    /**
+     * Atributos de GameContoller
+     */
     private GamerPot gamer;
     private ArrayList<FallingFood> foods;
     private GamePanel panel;
-    private Level currentLevel;
+    private Level1 currentLevel;
     private int points;
     private boolean isGameActive;
 
+    /**
+     * Constructor sin parametros de GameController
+     */
     public GameController() {
     }
 
     /**
-     * Metodo stratGame: Inicia el juego llamndo a loadLevel()
+     * Metodo startGame: Inicia el juego llamndo a loadLevel()
      */
     public void startGame() {
 
@@ -58,6 +64,10 @@ public class GameController implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * Metodo de KeyListener permite vincular un botón con una acción en el codigo.
+     * @param e the event to be processed
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -74,6 +84,10 @@ public class GameController implements KeyListener {
     public void keyReleased(KeyEvent e) {
     }
 
+
+    /**
+     * Metodo checkCollision: Vferifica si hubo colisión entre un objeto de tipo FallingFood y GamerPot
+     */
     public void checkCollision() {
 
         int[] boxes = currentLevel.getBoxes();
@@ -90,8 +104,7 @@ public class GameController implements KeyListener {
 
 
     /**
-     * Metodo updatePoints: Suma o resta puntos según el tipo de alimento que el jugador atrape
-     *
+     * Metodo updatePoints: Suma o resta puntos según el tipo de alimento que el jugador atrape.
      * @param food
      */
     public void updatePoints(FallingFood food) {
@@ -116,7 +129,6 @@ public class GameController implements KeyListener {
 
     /**
      * Método loadLevel: toma los valores del nivel activo y configura el juego
-     * <p>
      * Crea el currentLevel
      * Crea el gamer con las vidas del nivel
      * Crear las  foods con las casillas y velocidad del nivel
@@ -146,7 +158,6 @@ public class GameController implements KeyListener {
 
     /**
      * Metodo randomBox: Toma el arreglo de casillas del nivel activo escoge una posición al azar.
-     *
      * @return
      */
     private int randomBox() {
