@@ -1,4 +1,5 @@
-package src.main.java.controller;
+package controller;
+
 
 /**
  * Clase main: Inicializa a Gamecontroller para iniciar el juego.

@@ -1,4 +1,4 @@
-package src.main.java.model;
+package model;
 
 import java.awt.*;
 
@@ -18,7 +18,7 @@ public class FallingFood extends Entity implements Runnable {
     private int initialDelay;
 
     /**
-     * Constructor de l aclase FallingFood
+     * Constructor de la clase FallingFood
      * @param boxes
      * @param imagePath
      * @param name
