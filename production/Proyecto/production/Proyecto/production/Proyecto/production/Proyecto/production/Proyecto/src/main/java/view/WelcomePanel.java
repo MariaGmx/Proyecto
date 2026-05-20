@@ -20,7 +20,7 @@ public class WelcomePanel extends JFrame {
 
         panel.setLayout(null);
 
-        // LOGO DE LA UAM
+        // LOGO
         URL urlLogo = getClass().getClassLoader().getResource("main/resources/images/logoU.png");
 
         System.out.println(urlLogo);
@@ -35,20 +35,20 @@ public class WelcomePanel extends JFrame {
         logo.setBounds(590, 610, 210, 300);
         panel.add(logo);
 
-        // CONTENEDOR EN EL QUE ESTAMOS TRABAJANDO
+        // ✅ PASO 1: Panel contenedor
         JPanel estudiantesPanel = new JPanel(null);
         estudiantesPanel.setBounds(150, 150, 500, 500);
         estudiantesPanel.setOpaque(false);
         estudiantesPanel.setVisible(false);
 
-        // LA IMAGEN QUE OCUPA TODO EL
+        // ✅ La imagen ocupa todo el panel
         JLabel estudiantesLabel = new JLabel();
         estudiantesLabel.setBounds(0, 0, 500, 500);
         estudiantesPanel.add(estudiantesLabel);
 
         panel.add(estudiantesPanel);
 
-        // BOTON CERRAR DENTRO DEL PANEL
+        // ✅ PASO 2: btnCerrar dentro del panel
         URL urlCerrar = getClass().getClassLoader().getResource("main/resources/images/cerrar.png");
 
         ImageIcon iconoCerrar = new ImageIcon(urlCerrar);
@@ -65,21 +65,21 @@ public class WelcomePanel extends JFrame {
         });
 
         estudiantesPanel.add(btnCerrar);
-        // FORZAMOS AL BOTON CERRAR A QUEDAR ENCIMA DE LA IMAGEN
+        // ✅ CLAVE: fuerza al btnCerrar a quedar encima de la imagen
         estudiantesPanel.setComponentZOrder(btnCerrar, 0);
         estudiantesPanel.setComponentZOrder(estudiantesLabel, 1);
 
-        // BOTON DE MOSTRAR ESTUDIANTES
+        // ✅ PASO 3: Botón MOSTRAR ESTUDIANTES
         URL urlMostrarEstudiantes = getClass().getClassLoader().getResource("main/resources/images/mostrarestu.png");
 
         ImageIcon btn = new ImageIcon(urlMostrarEstudiantes);
 
         JButton btnMostrarEstudiantes = new JButton(btn);
-        // NOMBRE DE LA MATERIA
+        // ✅ Texto animado debajo del botón mostrar estudiantes
         GlowingLabel glowLabel = new GlowingLabel("PROGRAMACIÓN ORIENTADA A OBJETOS");
 
-
-        glowLabel.setBounds(310, 610, 400, 100);
+// btnMostrarEstudiantes está en y=420, le sumamos su alto aprox
+        glowLabel.setBounds(290, 510, 400, 100);
 
         panel.add(glowLabel);
         btnMostrarEstudiantes.setBounds(370, 420, btn.getIconWidth(), btn.getIconHeight());
@@ -151,7 +151,7 @@ public class WelcomePanel extends JFrame {
             ));
             setHorizontalAlignment(SwingConstants.CENTER);
 
-            // TIMER QUE CAMBIA EL BRILLO CADA 50MS
+            // ✅ El Timer es el "respirador" que cambia el brillo cada 50ms
             Timer timer = new Timer(50, e -> {
                 if (increasing) {
                     alpha += 0.05f;
@@ -169,16 +169,16 @@ public class WelcomePanel extends JFrame {
         protected void paintComponent(Graphics g) {
             Graphics2D g2d = (Graphics2D) g.create();
 
-            // ORGANIZA EL TEXTO
+            // ✅ Suaviza el texto
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            // BRILLO DEL TEXTO
+            // ✅ Capa de brillo azul difuminado detrás del texto
             g2d.setFont(getFont());
             FontMetrics fm = g2d.getFontMetrics();
             int x = (getWidth() - fm.stringWidth(getText())) / 2;
             int y = (getHeight() + fm.getAscent()) / 2 - 2;
 
-            // Dibuja el  azul alrededor
+            // Dibuja el halo azul alrededor
             g2d.setColor(new Color(255, 140, 0, (int) (alpha * 120)));
             for (int i = -3; i <= 3; i++) {
                 for (int j = -3; j <= 3; j++) {
@@ -187,9 +187,9 @@ public class WelcomePanel extends JFrame {
             }
 
             // Dibuja el texto principal encima
-            g2d.setColor(new Color((int) (100 + alpha * 155),
-                    (int) (180 + alpha * 75),
-                    255
+            g2d.setColor(new Color((int) (100 + alpha * 155),  // R
+                    (int) (180 + alpha * 75),   // G
+                    255                         // B siempre máximo
             ));
             g2d.drawString(getText(), x, y);
 
