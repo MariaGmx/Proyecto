@@ -1,4 +1,4 @@
-package src.main.java.model;
+package model;
 
 /**
  * Clase Level1: contiene la configuración del nivel.

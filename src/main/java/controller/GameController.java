@@ -1,8 +1,8 @@
-package src.main.java.controller;
-import src.main.java.model.FallingFood;
-import src.main.java.model.GamerPot;
-import src.main.java.model.Level1;
-import src.main.java.view.GamePanel;
+package controller;
+import model.FallingFood;
+import model.GamerPot;
+import model.Level1;
+import view.GamePanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -183,4 +183,4 @@ public class GameController implements KeyListener {
         }
     }
 }
-
+//prueba de git exitosa

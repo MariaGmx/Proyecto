@@ -1,8 +1,8 @@
-package src.main.java.view;
+package view;
 
-import src.main.java.model.FallingFood;
-import src.main.java.model.GamerPot;
-import src.main.java.model.Level1;
+import model.FallingFood;
+import model.GamerPot;
+import model.Level1;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;

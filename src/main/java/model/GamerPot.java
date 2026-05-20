@@ -3,7 +3,7 @@ package model;
 import java.awt.*;
 
 
-public class GamerPot extends src.main.java.model.Entity {
+public class GamerPot extends Entity {
 
     /**
      * // constantes y variables de  GamerPot
