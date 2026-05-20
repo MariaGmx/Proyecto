@@ -1,17 +1,10 @@
-package main.java.controller;
-
-
-import main.java.model.FallingFood;
-import main.java.model.GamerPot;
-import main.java.model.Level;
-import main.java.model.Level1;
-import main.java.view.GamePanel;
-
 package controller;
+
 import model.FallingFood;
 import model.GamerPot;
 import model.Level1;
 import view.GamePanel;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -28,7 +21,7 @@ public class GameController implements KeyListener {
     private GamerPot gamer;
     private ArrayList<FallingFood> foods;
     private GamePanel panel;
-    private Level currentLevel;
+    private Level1 currentLevel;
     private int points;
     private boolean isGameActive;
 

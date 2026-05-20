@@ -21,16 +21,15 @@ public class WelcomePanel extends JFrame {
         panel.setLayout(null);
 
         // LOGO DE LA UAM
-        URL urlLogo = getClass().getClassLoader().getResource("main/resources/images/logoU.png");
 
         URL urlLogo = getClass().getClassLoader()
-                .getResource("main/resources/images/logoU.png");
+                .getResource("images/logoU.png");
 
         System.out.println(urlLogo); // verifica que NO sea null
 
         ImageIcon logoIcon = new ImageIcon(urlLogo);
 
-// 🔥 REDIMENSIONAR IMAGEN
+// REDIMENSIONAR IMAGEN
         Image imgEscalada = logoIcon.getImage()
                 .getScaledInstance(120, 120, Image.SCALE_SMOOTH);
 
@@ -61,7 +60,7 @@ public class WelcomePanel extends JFrame {
         panel.add(estudiantesPanel);
 
         // BOTON CERRAR DENTRO DEL PANEL
-        URL urlCerrar = getClass().getClassLoader().getResource("main/resources/images/cerrar.png");
+        URL urlCerrar = getClass().getClassLoader().getResource("images/cerrar.png");
 
         ImageIcon iconoCerrar = new ImageIcon(urlCerrar);
         JButton btnCerrar = new JButton(iconoCerrar);
@@ -115,7 +114,6 @@ public class WelcomePanel extends JFrame {
         panel.add(btnMostrarEstudiantes);
 
         // BOTÓN INICIAR
-        URL urlBtn = getClass().getClassLoader().getResource("main/resources/images/boton1.png");
 
         ImageIcon icono = new ImageIcon(urlBtn);
 
@@ -149,7 +147,7 @@ public class WelcomePanel extends JFrame {
 
         public BackgroundPanel() {
             URL url = getClass().getClassLoader()
-                    .getResource("main/resources/images/PanelBienvenida.png");
+                    .getResource("images/PanelBienvenida.png");
 
             background = new ImageIcon(url).getImage();
         }

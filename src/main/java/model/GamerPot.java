@@ -24,7 +24,7 @@ public class GamerPot extends Entity {
 
     //variable de puntuacion
     private int score = 0;
-    private int currentBox = 0;
+
 
 
     /**
