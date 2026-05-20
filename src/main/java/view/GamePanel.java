@@ -1,6 +1,6 @@
 package src.main.java.view;
 
-//prueba yeymi
+//prueba yeymi    j
 
 import src.main.java.model.FallingFood;
 import src.main.java.model.GamerPot;
