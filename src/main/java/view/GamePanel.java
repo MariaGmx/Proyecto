@@ -1,9 +1,9 @@
-package main.java.view;
+package view;
 
 
-import main.java.model.FallingFood;
-import main.java.model.GamerPot;
-import main.java.model.Level;
+import model.FallingFood;
+import model.GamerPot;
+import model.Level1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,14 +17,14 @@ public class GamePanel extends JPanel {
     private ArrayList<FallingFood> foods;
     private Image background;
 
-    public GamePanel(GamerPot gamer, ArrayList<FallingFood> foods, Level currentLevel) {
+    public GamePanel(GamerPot gamer, ArrayList<FallingFood> foods, Level1 currentLevel) {
         this.gamer = gamer;
         this.foods = foods;
         setFocusable(true);
         requestFocusInWindow();
 
         URL url = getClass().getClassLoader()
-                .getResource("main/resources/images/background.png");
+                .getResource("images/background.png");
 
         System.out.println(url);
 

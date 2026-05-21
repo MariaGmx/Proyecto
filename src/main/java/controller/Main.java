@@ -1,6 +1,6 @@
-package main.java.controller;
+package controller;
 
-import main.java.view.WelcomePanel;
+import view.WelcomePanel;
 
 public class Main {
     public static void main(String[] args) {

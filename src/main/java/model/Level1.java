@@ -1,6 +1,6 @@
-package main.java.model;
+package model;
 
-public class Level1 implements Level {
+public class Level1 {
 
     private int[] boxes = {50, 200, 350, 500, 650};
     private int lifes = 4;
@@ -68,18 +68,15 @@ public class Level1 implements Level {
         return steps;
     }
 
-    @Override
     public int getLives() {
         return lifes;
     }
 
-    @Override
     public int getTimeLimitSeconds() {
         return timeLine;
     }
 
 
-    @Override
     public int getNumEnemies() {
         return numbEnemies;
     }

@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -50,7 +50,7 @@ public abstract class Entity {
      */
     public static BufferedImage uploadImage(String nombre) {
         try {
-            InputStream is = Entity.class.getResourceAsStream("/src/main/resources/images/" + nombre);
+            InputStream is = Entity.class.getResourceAsStream("/images/" + nombre);
             if (is == null) {
                 System.err.println("Imagen no encontrada: " + nombre);
                 return null;
