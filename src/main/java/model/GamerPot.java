@@ -8,13 +8,13 @@ public class GamerPot extends Entity {
     /**
      * // constantes y variables de  GamerPot
      */
-    private static final int X_INITIAL = 250;
-    private static final int Y_INITIAL = 550;
+    private static final int X_INITIAL = 20;
+    private static final int Y_INITIAL = 570;
     private static final int SPEED = 1;
     private static final int INITIAL_LIVES = 3;
     private int currentBox = 0;
-
-
+    private boolean isPowered = false;
+    private long powerEndTime = 0;
 
     /**
      * Variables de GamerPot
@@ -48,6 +48,8 @@ public class GamerPot extends Entity {
         this.score = score;
     }
 
+    public boolean isPowered() { return isPowered; }
+
 
     /**
      * Constructor de GamerPot
@@ -80,7 +82,7 @@ public class GamerPot extends Entity {
      */
     @Override
     public void toDraw(Graphics g) {
-        g.drawImage(getSprite(), getX(), getY(), 300, 300, null);
+        g.drawImage(getSprite(), getX() - 15, getY(), 240, 240, null);
 
     }
 
@@ -114,7 +116,7 @@ public class GamerPot extends Entity {
      * Metodo para mover GamerPot a la derecha
      */
     public void moveRight(int step) {
-        if (x + step <= 600) {
+        if (x + step <= 765) {
             x += step;
         }
     }
@@ -125,6 +127,19 @@ public class GamerPot extends Entity {
     public void moveLeft(int step) {
         if (x - step >= 0) {
             x -= step;
+        }
+    }
+
+    public void activatePower() {
+        isPowered = true;
+        powerEndTime = System.currentTimeMillis() + 3000; // 5 segundos
+        setSprite(uploadImage("goldenPot.png")); // cambiar imagen
+    }
+
+    public void checkPower() {
+        if (isPowered && System.currentTimeMillis() > powerEndTime) {
+            isPowered = false;
+            setSprite(uploadImage("pot.png")); // vuelve al sprite normal
         }
     }
 

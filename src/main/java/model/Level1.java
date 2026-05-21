@@ -9,13 +9,13 @@ public class Level1  {
     /**
      * Atributos de la clase Level1
      */
-    private int[] boxes = {50, 200, 350, 500, 650};
-    private int lifes = 4;
+    private int[] boxes = {80,230,3900,550,6900};
+    private int lifes = 3;
     private int timeLine = 150; // duracion del nivel en segundos
     private int minScore = 10;
     private int numbEnemies = 5;
     private int foodSpeed = 25;
-    private int steps = 125;
+    private int steps = 152;
 
 
     /**

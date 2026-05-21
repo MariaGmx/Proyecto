@@ -3,13 +3,9 @@ package view;
 import model.FallingFood;
 import model.GamerPot;
 import model.Level1;
-
-
-
 import model.FallingFood;
 import model.GamerPot;
 import model.Level1;
-
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -24,6 +20,13 @@ public class GamePanel extends JPanel {
     private GamerPot gamer;
     private ArrayList<FallingFood> foods;
     private Image background;
+    private int timeLeft;
+
+    public void setTimeLeft(int timeLeft) {
+        this.timeLeft = timeLeft;
+    }
+
+
 
     /**
      * Constructor por parametros de GamePanel
@@ -34,6 +37,7 @@ public class GamePanel extends JPanel {
     public GamePanel(GamerPot gamer, ArrayList<FallingFood> foods, Level1 currentLevel) {
         this.gamer = gamer;
         this.foods = foods;
+        this.timeLeft = currentLevel.getTimeLimitSeconds();
         setFocusable(true);
         requestFocusInWindow();
 
@@ -80,6 +84,7 @@ public class GamePanel extends JPanel {
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString("Puntaje: " + gamer.getScore(), 20, 30);
         g.drawString("Vidas: " + gamer.getLives(), 20, 60);
+        g.drawString("Tiempo: " + timeLeft, 20, 90);
 
         //  Integrante 2 - dibujar Timer aquí
 

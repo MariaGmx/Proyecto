@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameController;
+import controller.SoundManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,18 @@ import java.net.URL;
 
 public class WelcomePanel extends JFrame {
 
+    /**
+     * Objeto encargado de reproducir sonidos del menú.
+     */
+    private SoundManager sound;
+
+
+    /**
+     * Constructor principal de la ventana de bienvenida.
+     */
     public WelcomePanel() {
+
+        sound = new SoundManager();
 
         setTitle("Burning Kitchen");
         setSize(800, 1000);
@@ -59,6 +71,17 @@ public class WelcomePanel extends JFrame {
         btnCerrar.setContentAreaFilled(false);
         btnCerrar.setFocusPainted(false);
 
+        btnCerrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        addButtonSound(
+                btnCerrar,
+                "/sounds/SonidoBonton.wav"
+        );
+
+        /**
+         * Evento encargado de ocultar el panel
+         * de estudiantes.
+         */
         btnCerrar.addActionListener(e -> {
             estudiantesPanel.setVisible(false);
             panel.repaint();
@@ -157,6 +180,17 @@ public class WelcomePanel extends JFrame {
         btnIniciar.setContentAreaFilled(false);
         btnIniciar.setFocusPainted(false);
 
+        btnIniciar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        addButtonSound(
+                btnIniciar,
+                "/sounds/SonidoSubirNivel.wav"
+        );
+
+
+        /**
+        * Evento encargado de iniciar el videojuego.
+        */
         btnIniciar.addActionListener(e -> {
             GameController controller = new GameController();
             controller.startGame();
@@ -165,9 +199,162 @@ public class WelcomePanel extends JFrame {
 
         panel.add(btnIniciar);
 
+        /**
+         * Botón para mostrar las instrucciones del juego
+         * */
+
+        URL urlInstructions = getClass().getClassLoader().getResource(
+                "images/botonInstrucciones.png"
+        );
+
+        ImageIcon iconOriginalInstructions =
+                new ImageIcon(urlInstructions);
+
+        Image imagenEscaladaInstructions =
+                iconOriginalInstructions.getImage().getScaledInstance(
+                        260,
+                        250,
+                        Image.SCALE_SMOOTH
+                );
+
+        ImageIcon iconFinalInstructions =
+                new ImageIcon(imagenEscaladaInstructions);
+
+        JButton btnInstructions =
+                new JButton(iconFinalInstructions);
+
+        btnInstructions.setBounds(275, 340, 250, 90);
+
+        btnInstructions.setBorderPainted(false);
+
+        btnInstructions.setContentAreaFilled(false);
+
+        btnInstructions.setFocusPainted(false);
+
+        btnInstructions.setCursor(
+                new Cursor(Cursor.HAND_CURSOR)
+        );
+
+        addButtonSound(
+                btnInstructions,
+                "/sounds/SonidoBonton.wav"
+        );
+
+
+        /**
+         * Eventos que abre la ventana de instrucciones
+         * */
+
+        btnInstructions.addActionListener(e -> {
+
+            InstructionsPanel instructionsPanel =
+                    new InstructionsPanel();
+
+            instructionsPanel.setVisible(true);
+
+        });
+
+        panel.add(btnInstructions);
+
+        /**
+         * Botón para mostrar los ingredientes del proyecto
+         * */
+
+        URL urlMostrarEstudiantes =
+                getClass().getClassLoader().getResource(
+                        "images/mostrarestu.png"
+                );
+
+        ImageIcon iconEstudiantesOriginal =
+                new ImageIcon(urlMostrarEstudiantes);
+
+        Image imagenEstudiantesEscalada =
+                iconEstudiantesOriginal.getImage().getScaledInstance(
+                        250,
+                        90,
+                        Image.SCALE_SMOOTH
+                );
+
+        ImageIcon btn =
+                new ImageIcon(imagenEstudiantesEscalada);
+
+        JButton btnMostrarEstudiantes =
+                new JButton(btn);
+
+        btnMostrarEstudiantes.setBounds(275, 460, 250, 90);
+
+        btnMostrarEstudiantes.setBorderPainted(false);
+
+        btnMostrarEstudiantes.setContentAreaFilled(false);
+
+        btnMostrarEstudiantes.setFocusPainted(false);
+
+        btnMostrarEstudiantes.setCursor(
+                new Cursor(Cursor.HAND_CURSOR)
+        );
+
+        addButtonSound(
+                btnMostrarEstudiantes,
+                "/sounds/SonidoBonton.wav"
+        );
+
+        /**
+         * Evento encargado de mostrar la imagen
+         * de los integrantes del proyecto.
+         */
+        btnMostrarEstudiantes.addActionListener(e -> {
+
+            URL urlImg = getClass().getClassLoader().getResource(
+                    "images/Estudiantes.png"
+            );
+
+            ImageIcon icon = new ImageIcon(urlImg);
+
+            Image imgEscalada2 = icon.getImage().getScaledInstance(
+                    500,
+                    500,
+                    Image.SCALE_SMOOTH
+            );
+
+            estudiantesLabel.setIcon(
+                    new ImageIcon(imgEscalada2)
+            );
+
+            estudiantesPanel.setVisible(true);
+
+            panel.repaint();
+
+        });
+
+        panel.add(btnMostrarEstudiantes);
+
+        /**
+         * Hacer visible la ventana principal
+         * */
+
         setVisible(true);
     }
 
+    /**
+     * Método encargado de agregar sonido a un botón.
+     *
+     * @param button    botón al que se le agregará sonido
+     * @param soundPath ruta del sonido
+     */
+    private void addButtonSound(JButton button, String soundPath) {
+
+        button.addActionListener(e -> {
+
+            sound.playSound(soundPath);
+
+        });
+
+    }
+
+    /**
+     * Panel personalizado encargado de dibujar
+     * el fondo de la ventana principal.
+     */
     class BackgroundPanel extends JPanel {
         private Image background;
 

@@ -12,24 +12,31 @@ public class FallingFood extends Entity implements Runnable {
      * Variables de la clase FallingFood
      */
     private String name;
-    private boolean isPositive;
-    private int speed = 22;
+    private int code;
+    private int speed = 17;
     private int[] boxes;
     private int initialDelay;
+
+    /**
+     * Constantes para el puntaje
+     */
+    public static final int POINTS_10 = 1;
+    public static final int POINTS_20 = 2;
+    public static final int KILLER = 0;
 
     /**
      * Constructor de la clase FallingFood
      * @param boxes
      * @param imagePath
      * @param name
-     * @param isPositive
+     * @param code
      * @param initialDelay
      */
-    public FallingFood(int[] boxes, String imagePath, String name, boolean isPositive, int initialDelay) {
-        super(boxes[(int) (Math.random() * boxes.length)], -20, Entity.uploadImage(imagePath)); // convierte el String a BufferedImage
+    public FallingFood(int[] boxes, String imagePath, String name, int code, int initialDelay) {
+        super(boxes[(int) (Math.random() * boxes.length)], -150, Entity.uploadImage(imagePath)); // convierte el String a BufferedImage
         this.boxes = boxes;
         this.name = name;
-        this.isPositive = isPositive;
+        this.code = code;
         this.initialDelay = initialDelay;
 
     }
@@ -49,9 +56,9 @@ public class FallingFood extends Entity implements Runnable {
 
             while (true) {
                 y += speed;
-                if (y >= 560) update();
+                if (y >= 600) update();
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -64,7 +71,7 @@ public class FallingFood extends Entity implements Runnable {
      */
     @Override
     public void update() {
-        y = -20; // desde donde cae la comida
+        y = -17; // desde donde cae la comida
         x = boxes[(int) (Math.random() * boxes.length)];
         setActive(true);
     }
@@ -75,7 +82,7 @@ public class FallingFood extends Entity implements Runnable {
      */
     @Override
     public void toDraw(Graphics g) {
-        g.drawImage(getSprite(), x, y, 150, 150, null);
+        g.drawImage(getSprite(), x - 30, y, 110, 110, null);
     }
 
     /**
@@ -85,13 +92,8 @@ public class FallingFood extends Entity implements Runnable {
         return name;
     }
 
-    /**
-     * Metodo isPositive(): Metodo que verifica si un objeto de tipo FallingFood es positivo,
-     * es decir, si le suma puntos al jugador. Entonces será True.
-     * @return
-     */
-    public boolean isPositive() {
-        return isPositive;
+    public int getCode() {
+        return code;
     }
 }
 
