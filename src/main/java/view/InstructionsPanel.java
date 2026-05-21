@@ -1,5 +1,7 @@
 package view;
 
+import controller.SoundManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -29,9 +31,16 @@ import java.net.URL;
 public class InstructionsPanel extends JFrame {
 
     /**
+     * Objeto encargado de reproducir sonidos del menú.
+     */
+    private SoundManager sound;
+
+    /**
      * Constructor principal de la ventana de instrucciones.
      */
     public InstructionsPanel() {
+
+        sound = new SoundManager();
 
         setTitle("Instructions");
 
@@ -187,6 +196,11 @@ public class InstructionsPanel extends JFrame {
 
         btnClose.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+        addButtonSound(
+                btnClose,
+                "/sounds/SonidoBonton.wav"
+        );
+
         /***
          *Evento encargado de cerrar la ventana
          */
@@ -198,6 +212,22 @@ public class InstructionsPanel extends JFrame {
          * */
 
         panel.add(btnClose);
+    }
+
+    /**
+     * Método encargado de agregar sonido a un botón.
+     *
+     * @param button botón al que se le agregará sonido
+     * @param soundPath ruta del sonido
+     */
+    private void addButtonSound(JButton button, String soundPath) {
+
+        button.addActionListener(e -> {
+
+            sound.playSound(soundPath);
+
+        });
+
     }
 
     /**

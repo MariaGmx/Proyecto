@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameController;
+import controller.SoundManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,9 +31,17 @@ import java.net.URL;
 public class WelcomePanel extends JFrame {
 
     /**
+     * Objeto encargado de reproducir sonidos del menú.
+     */
+    private SoundManager sound;
+
+
+    /**
      * Constructor principal de la ventana de bienvenida.
      */
     public WelcomePanel() {
+
+        sound = new SoundManager();
 
         setTitle("Burning Kitchen");
 
@@ -128,6 +137,11 @@ public class WelcomePanel extends JFrame {
 
         btnCerrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+        addButtonSound(
+                btnCerrar,
+                "/sounds/SonidoBonton.wav"
+        );
+
         /**
          * Evento encargado de ocultar el panel
          * de estudiantes.
@@ -193,9 +207,15 @@ public class WelcomePanel extends JFrame {
 
         btnIniciar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+        addButtonSound(
+                btnIniciar,
+                "/sounds/SonidoSubirNivel.wav"
+        );
+
+
         /**
-         * Evento encargado de iniciar el videojuego.
-         */
+        * Evento encargado de iniciar el videojuego.
+        */
         btnIniciar.addActionListener(e -> {
 
             GameController controller = new GameController();
@@ -242,6 +262,11 @@ public class WelcomePanel extends JFrame {
 
         btnInstructions.setCursor(
                 new Cursor(Cursor.HAND_CURSOR)
+        );
+
+        addButtonSound(
+                btnInstructions,
+                "/sounds/SonidoBonton.wav"
         );
 
 
@@ -297,6 +322,11 @@ public class WelcomePanel extends JFrame {
                 new Cursor(Cursor.HAND_CURSOR)
         );
 
+        addButtonSound(
+                btnMostrarEstudiantes,
+                "/sounds/SonidoBonton.wav"
+        );
+
         /**
          * Evento encargado de mostrar la imagen
          * de los integrantes del proyecto.
@@ -332,6 +362,22 @@ public class WelcomePanel extends JFrame {
          * */
 
         setVisible(true);
+    }
+
+    /**
+     * Método encargado de agregar sonido a un botón.
+     *
+     * @param button    botón al que se le agregará sonido
+     * @param soundPath ruta del sonido
+     */
+    private void addButtonSound(JButton button, String soundPath) {
+
+        button.addActionListener(e -> {
+
+            sound.playSound(soundPath);
+
+        });
+
     }
 
     /**
