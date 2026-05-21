@@ -260,10 +260,7 @@ public class WelcomePanel extends JFrame {
          * Botón para mostrar los ingredientes del proyecto
          * */
 
-        URL urlMostrarEstudiantes =
-                getClass().getClassLoader().getResource(
-                        "images/mostrarestu.png"
-                );
+
 
         ImageIcon iconEstudiantesOriginal =
                 new ImageIcon(urlMostrarEstudiantes);
@@ -275,11 +272,9 @@ public class WelcomePanel extends JFrame {
                         Image.SCALE_SMOOTH
                 );
 
-        ImageIcon btn =
-                new ImageIcon(imagenEstudiantesEscalada);
 
-        JButton btnMostrarEstudiantes =
-                new JButton(btn);
+
+
 
         btnMostrarEstudiantes.setBounds(275, 460, 250, 90);
 
