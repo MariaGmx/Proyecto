@@ -1,8 +1,9 @@
-package src.main.java.controller;
-import src.main.java.model.FallingFood;
+package main.java.controller;
+
+import main.java.model.FallingFood;
 import src.main.java.model.GamerPot;
-import src.main.java.model.Level1;
 import src.main.java.view.GamePanel;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -16,10 +17,21 @@ public class GameController implements KeyListener {
     /**
      * Atributos de GameContoller
      */
+
+    private String playerName;
+
+    public void setPlayerName(String name) {
+        this.playerName = name;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
     private GamerPot gamer;
     private ArrayList<FallingFood> foods;
     private GamePanel panel;
-    private Level1 currentLevel;
+    private src.main.java.model.Level1 currentLevel;
     private int points;
     private boolean isGameActive;
 
@@ -66,6 +78,7 @@ public class GameController implements KeyListener {
 
     /**
      * Metodo de KeyListener permite vincular un botón con una acción en el codigo.
+     *
      * @param e the event to be processed
      */
     @Override
@@ -105,6 +118,7 @@ public class GameController implements KeyListener {
 
     /**
      * Metodo updatePoints: Suma o resta puntos según el tipo de alimento que el jugador atrape.
+     *
      * @param food
      */
     public void updatePoints(FallingFood food) {
@@ -135,7 +149,7 @@ public class GameController implements KeyListener {
      * Arranca los hilos de cada food
      */
     public void loadLevel() { //-------------------FALTA AGREGAR MAS COMIDA------------------------------!!!!!!!!!!!!!!!
-        currentLevel = new Level1();
+        currentLevel = new src.main.java.model.Level1();
         gamer = new GamerPot();
         foods = new ArrayList<>();
 
@@ -158,6 +172,7 @@ public class GameController implements KeyListener {
 
     /**
      * Metodo randomBox: Toma el arreglo de casillas del nivel activo escoge una posición al azar.
+     *
      * @return
      */
     private int randomBox() {
