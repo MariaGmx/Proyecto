@@ -1,39 +1,34 @@
 package main.java.controller;
 
+import main.java.model.Enemy;
+import main.java.model.EnemyPotion;
 import main.java.model.FallingFood;
-import src.main.java.model.GamerPot;
-import src.main.java.view.GamePanel;
+import main.java.model.GamerPot;
+import main.java.view.GamePanel;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 /**
- * Clase GameController: Coordina toda la parte visual del jugeo con la logica.
+ * Clase GameController: Coordina toda la parte visual del juego con la logica.
  * las ventanas, las imagenes, los puntos, las colisiones e implementa KeyListener
  */
 public class GameController implements KeyListener {
 
     /**
-     * Atributos de GameContoller
+     * Atributos de GameController
      */
-
     private String playerName;
-
-    public void setPlayerName(String name) {
-        this.playerName = name;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
     private GamerPot gamer;
     private ArrayList<FallingFood> foods;
     private GamePanel panel;
-    private src.main.java.model.Level1 currentLevel;
+    private main.java.model.Level1 currentLevel;
     private int points;
     private boolean isGameActive;
+    private Enemy enemy;        // ✅ NUEVO
+    private EnemyPotion potion; // ✅ NUEVO
 
     /**
      * Constructor sin parametros de GameController
@@ -42,18 +37,57 @@ public class GameController implements KeyListener {
     }
 
     /**
-     * Metodo startGame: Inicia el juego llamndo a loadLevel()
+     * Setters y Getters de playerName
+     */
+    public void setPlayerName(String name) {
+        this.playerName = name;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    /**
+     * Getters de enemy y potion
+     */
+    public Enemy getEnemy() {
+        return enemy;
+    }        // ✅ NUEVO
+
+    public EnemyPotion getPotion() {
+        return potion;
+    } // ✅ NUEVO
+
+    /**
+     * Metodo startGame: Inicia el juego llamando a loadLevel()
      */
     public void startGame() {
 
         loadLevel();
-        panel = new GamePanel(gamer, foods, currentLevel);
+        panel = new GamePanel(gamer, foods, currentLevel, playerName, enemy, potion);
         panel.getVentana().addKeyListener(this);
         panel.getVentana().requestFocus();
         panel.repaint();
         isGameActive = true;
-        //  Integrante 2 - conectar GamePanel aquí !!!!!!!!!!!!!!!!!!!!!
-        //  Integrante 2 - arrancar Timer aquí!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        // ✅ NUEVO: hilo de animación del enemigo
+        new Thread(enemy).start();
+
+        // ✅ NUEVO: hilo que hace aparecer el enemigo cada 5 segundos
+        Thread hiloEnemigo = new Thread(() -> {
+            while (isGameActive) {
+                try {
+                    Thread.sleep(5000); // espera 5 segundos
+                    enemy.aparecer();
+                    potion.lanzar(enemy.getX(), enemy.getY());
+                    Thread.sleep(3000); // visible 3 segundos
+                    enemy.desaparecer();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        hiloEnemigo.start();
 
         Thread loopJuego = new Thread(new Runnable() {
             public void run() {
@@ -85,9 +119,7 @@ public class GameController implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             gamer.moveLeft(currentLevel.getSteps());
-
         }
-
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             gamer.moveRight(currentLevel.getSteps());
         }
@@ -97,9 +129,8 @@ public class GameController implements KeyListener {
     public void keyReleased(KeyEvent e) {
     }
 
-
     /**
-     * Metodo checkCollision: Vferifica si hubo colisión entre un objeto de tipo FallingFood y GamerPot
+     * Metodo checkCollision: Verifica si hubo colisión entre un objeto de tipo FallingFood y GamerPot
      */
     public void checkCollision() {
 
@@ -113,8 +144,29 @@ public class GameController implements KeyListener {
                 }
             }
         }
-    }
+//colision con el enemigo
+        if (potion.isVisible()) {
 
+            int potionX = potion.getX();
+            int potionY = potion.getY();
+
+            int gamerX = gamer.getX();
+            int gamerY = gamer.getY();
+
+            Rectangle gamerBox =
+                    new Rectangle(gamerX - 20, gamerY - 20, 140, 140);
+
+            Rectangle potionBox =
+                    new Rectangle(potionX, potionY, 100, 100);
+
+            if (gamerBox.intersects(potionBox)) {
+
+                gamer.perderTodasLasVidas();
+
+                potion.detener();
+            }
+        }
+    }
 
     /**
      * Metodo updatePoints: Suma o resta puntos según el tipo de alimento que el jugador atrape.
@@ -140,16 +192,11 @@ public class GameController implements KeyListener {
         }
     }
 
-
     /**
      * Método loadLevel: toma los valores del nivel activo y configura el juego
-     * Crea el currentLevel
-     * Crea el gamer con las vidas del nivel
-     * Crear las  foods con las casillas y velocidad del nivel
-     * Arranca los hilos de cada food
      */
-    public void loadLevel() { //-------------------FALTA AGREGAR MAS COMIDA------------------------------!!!!!!!!!!!!!!!
-        currentLevel = new src.main.java.model.Level1();
+    public void loadLevel() {
+        currentLevel = new main.java.model.Level1();
         gamer = new GamerPot();
         foods = new ArrayList<>();
 
@@ -157,23 +204,26 @@ public class GameController implements KeyListener {
         String[] names = {"CORN", "GARLIC"};
         boolean[] isPositive = {true, false};
 
-        int[] boxes = currentLevel.getBoxes();
-
-
         for (int i = 0; i < imageNames.length; i++) {
-            FallingFood food = new FallingFood(currentLevel.getBoxes(), imageNames[i], names[i], isPositive[i], i * 2000);
+            FallingFood food = new FallingFood(
+                    currentLevel.getBoxes(),
+                    imageNames[i],
+                    names[i],
+                    isPositive[i],
+                    i * 2000
+            );
             foods.add(food);
             new Thread(food).start();
         }
 
-
+        // ✅ NUEVO: inicializar enemigo y poción
+        enemy = new Enemy();
+        potion = new EnemyPotion();
+        new Thread(potion).start();
     }
 
-
     /**
-     * Metodo randomBox: Toma el arreglo de casillas del nivel activo escoge una posición al azar.
-     *
-     * @return
+     * Metodo randomBox: escoge una posición al azar del arreglo de casillas.
      */
     private int randomBox() {
         int[] boxes = currentLevel.getBoxes();
@@ -185,17 +235,12 @@ public class GameController implements KeyListener {
      * Metodo verifyState: revisar si el jugador ganó, perdió o se quedó sin vidas.
      */
     public void verifyState() {
-
         if (gamer.isActive()) {
-
             if (gamer.getScore() >= currentLevel.getMinScore()) {
-                // pasa de nivel sin importar las vidas
                 isGameActive = false;
-                // cargar siguiente nivel aquí !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             } else if (gamer.getLives() <= 0) {
                 isGameActive = false;
             }
         }
     }
 }
-
