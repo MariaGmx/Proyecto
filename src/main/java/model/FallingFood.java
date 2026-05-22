@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 import java.awt.*;
 
@@ -27,7 +27,7 @@ public class FallingFood extends Entity implements Runnable {
      * @param initialDelay
      */
     public FallingFood(int[] boxes, String imagePath, String name, boolean isPositive, int initialDelay) {
-        super(boxes[(int) (Math.random() * boxes.length)], -20, Entity.uploadImage(imagePath)); // convierte el String a BufferedImage
+        super(boxes[(int) (Math.random() * boxes.length)], -20, model.Entity.uploadImage(imagePath)); // convierte el String a BufferedImage
         this.boxes = boxes;
         this.name = name;
         this.isPositive = isPositive;

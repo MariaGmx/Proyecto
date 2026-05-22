@@ -1,6 +1,6 @@
-package main.java.controller;
+package controller;
 
-import main.java.view.WelcomePanel;
+import view.WelcomePanel;
 
 /**
  * Clase main: Inicializa a Gamecontroller para iniciar el juego.

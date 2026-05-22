@@ -1,7 +1,7 @@
-package main.java.view;
+package view;
 
-import main.java.controller.GameController;
-import main.java.controller.SoundManager;
+import controller.GameController;
+import controller.SoundManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -162,7 +162,7 @@ public class WelcomePanel extends JFrame {
 
             String[] nameHolder = new String[1];
 
-            new NamePanel(() -> {
+            new view.NamePanel(() -> {
 
                 GameController controller = new GameController();
 
@@ -176,7 +176,7 @@ public class WelcomePanel extends JFrame {
         panel.add(btnIniciar);
 
         // BOTÓN INSTRUCCIONES
-        URL urlInstructions = getClass().getClassLoader().getResource("main/resources/images/botonInstrucciones.png");
+        URL urlInstructions = getClass().getClassLoader().getResource("images/botonInstrucciones.png");
 
         ImageIcon iconOriginalInstructions = new ImageIcon(urlInstructions);
 
@@ -198,7 +198,7 @@ public class WelcomePanel extends JFrame {
 
         btnInstructions.addActionListener(e -> {
 
-            InstructionsPanel instructionsPanel = new InstructionsPanel();
+            view.InstructionsPanel instructionsPanel = new view.InstructionsPanel();
 
             instructionsPanel.setVisible(true);
         });
@@ -206,7 +206,7 @@ public class WelcomePanel extends JFrame {
         panel.add(btnInstructions);
 
         // BOTÓN MOSTRAR ESTUDIANTES
-        URL urlMostrarEstudiantes = getClass().getClassLoader().getResource("main/resources/images/mostrarestu.png");
+        URL urlMostrarEstudiantes = getClass().getClassLoader().getResource("images/mostrarestu.png");
 
         ImageIcon iconEstudiantesOriginal = new ImageIcon(urlMostrarEstudiantes);
 
@@ -224,11 +224,11 @@ public class WelcomePanel extends JFrame {
 
         btnMostrarEstudiantes.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        addButtonSound(btnMostrarEstudiantes, "/sounds/SonidoBonton.wav");
+        addButtonSound(btnMostrarEstudiantes, "sounds/SonidoBonton.wav");
 
         btnMostrarEstudiantes.addActionListener(e -> {
 
-            URL urlImg = getClass().getClassLoader().getResource("main/resources/images/Estudiantes.png");
+            URL urlImg = getClass().getClassLoader().getResource("images/Estudiantes.png");
 
             ImageIcon icon = new ImageIcon(urlImg);
 
@@ -288,7 +288,7 @@ class BackgroundPanel extends JPanel {
      */
     public BackgroundPanel() {
 
-        URL url = getClass().getClassLoader().getResource("main/resources/images/PanelBienvenida.png");
+        URL url = getClass().getClassLoader().getResource("images/PanelBienvenida.png");
 
         if (url != null) {
 
