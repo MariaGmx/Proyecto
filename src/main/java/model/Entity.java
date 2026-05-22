@@ -1,4 +1,5 @@
-package src.main.java.model;
+package main.java.model;
+
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -32,10 +33,12 @@ public abstract class Entity {
 
     /**
      * Constructor de Entity
+     *
      * @param x
      * @param y
      * @param sprite
      */
+
     public Entity(int x, int y, BufferedImage sprite) {
         this.x = x;
         this.y = y;
@@ -45,6 +48,8 @@ public abstract class Entity {
     }
 
     /*
+
+     * Cada subclase debe definir su propia lógica de reinicio
      * Metodo abstracto update(): Cada subclase debe definir su propia lógica de reinicio
      */
     public abstract void update();
@@ -69,6 +74,7 @@ public abstract class Entity {
 
     /**
      * Método abstracto toDraw: Cada clase hija se encarga de definir como va a dibujarse.
+     *
      * @param g
      */
     public abstract void toDraw(Graphics g);
@@ -79,6 +85,7 @@ public abstract class Entity {
      *
      * @return
      */
+
     public int getX() {
         return x;
     }

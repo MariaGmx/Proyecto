@@ -1,9 +1,9 @@
-package src.main.java.model;
+package main.java.model;
 
 import java.awt.*;
 
 
-public class GamerPot extends src.main.java.model.Entity {
+public class GamerPot extends Entity {
 
     /**
      * // constantes y variables de  GamerPot
@@ -12,7 +12,7 @@ public class GamerPot extends src.main.java.model.Entity {
     private static final int Y_INITIAL = 550;
     private static final int SPEED = 1;
     private static final int INITIAL_LIVES = 3;
-
+    private int currentBox = 0;
 
 
     /**
@@ -20,13 +20,14 @@ public class GamerPot extends src.main.java.model.Entity {
      */
     // variable de vidas
     private int lives;
+
     //variable de puntuacion
     private int score = 0;
-    private int currentBox = 0;
 
 
     /**
      * Getters y Setters
+     *
      * @return
      */
     public int getLives() {
@@ -73,6 +74,7 @@ public class GamerPot extends src.main.java.model.Entity {
 
     /**
      * Método abstracto toDraw: Se encarga de dibujar el GamerPot
+     *
      * @param g
      */
     @Override
@@ -117,7 +119,7 @@ public class GamerPot extends src.main.java.model.Entity {
     }
 
     /**
-     * Metodo para mover GamerPot a la izquierda
+     * Metodo para mover GamerPOt a la izquierda
      */
     public void moveLeft(int step) {
         if (x - step >= 0) {

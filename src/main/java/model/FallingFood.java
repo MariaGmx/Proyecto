@@ -1,4 +1,4 @@
-package src.main.java.model;
+package main.java.model;
 
 import java.awt.*;
 
@@ -18,7 +18,8 @@ public class FallingFood extends Entity implements Runnable {
     private int initialDelay;
 
     /**
-     * Constructor de l aclase FallingFood
+     * Constructor de la clase FallingFood
+     *
      * @param boxes
      * @param imagePath
      * @param name
@@ -37,6 +38,7 @@ public class FallingFood extends Entity implements Runnable {
     /**
      * Metodo run() de Runnable()
      */
+
     @Override
     public void run() {
         {
@@ -66,12 +68,11 @@ public class FallingFood extends Entity implements Runnable {
         y = -20; // desde donde cae la comida
         x = boxes[(int) (Math.random() * boxes.length)];
         setActive(true);
-
-
     }
 
     /**
      * Metodo abstracto toDraw heredado de Entity; define como se dibuja el objeto de tipo FallingFood
+     *
      * @param g
      */
     @Override
@@ -89,10 +90,10 @@ public class FallingFood extends Entity implements Runnable {
     /**
      * Metodo isPositive(): Metodo que verifica si un objeto de tipo FallingFood es positivo,
      * es decir, si le suma puntos al jugador. Entonces será True.
+     *
      * @return
      */
     public boolean isPositive() {
         return isPositive;
     }
 }
-

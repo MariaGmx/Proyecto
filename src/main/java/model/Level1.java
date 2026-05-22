@@ -1,10 +1,10 @@
-package src.main.java.model;
+package main.java.model;
 
 /**
  * Clase Level1: contiene la configuración del nivel.
  * tiempo limite, vidas, velocidad de lan comida al caer, puntaje minimo, movimiento de GamerPot en x, y numero de enemigos
  */
-public class Level1  {
+public class Level1 {
 
     /**
      * Atributos de la clase Level1
@@ -89,4 +89,3 @@ public class Level1  {
 
 
 }
-
